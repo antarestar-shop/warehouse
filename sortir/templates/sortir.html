@@ -1,0 +1,278 @@
+{% extends 'base.html' %} {%block content%}
+
+<!-- Startbody -->
+
+<div class="md:px-16 md:pt-10 px-3 pt-10">
+  <!-- Header Area -->
+  <form action="{% url 'sortir' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="reset" value="reset" class="hidden">
+    <center>
+      <button class="border border-error md:p-1 md:px-2 p-3 rounded-md hover:bg-error text-slate-100 float-left" type="submit" value="reset">reset</button>
+      <a href="/admin" class="border border-violet-500 md:p-1 md:px-2 p-3 rounded-md hover:bg-violet-500 text-slate-100">admin</a>
+      <a href="{% url 'logout' %}" class="border border-info md:p-1 md:px-2 p-3 rounded-md hover:bg-info text-slate-100 float-right">Logout</a>
+    </center>
+  
+  </form>
+  <div class="w-full rounded-2xl bg-neutral md:h-56 h-24 flex">
+    {%load static%}
+    <img
+      src="{% static 'img/logo.png' %}"
+      class="overflow-hidden"
+      height="100% "
+      alt="Antarestar"
+    />
+
+    <div class="flex items-center align-middle px-3">
+      <div
+        class="border border-info md:p-10 md:px-10 p-3 rounded-md hover:bg-info"
+      >
+        <h3
+          class="md:text-5xl text-xl font-bold text-slate-100 align-middle text-left"
+        >
+         Sukses: {{ total }}
+        </h3>
+      </div>
+    </div>
+    <div class="flex items-center align-middle px-3">
+      <div
+        class="border border-error hover:bg-error md:p-10 md:px-10 p-3 rounded-md text-white"
+      >
+        <h3 class="md:text-5xl text-xl font-bold align-middle text-left">
+          Double: {{ double }}
+        </h3>
+      </div>
+    </div>
+    <div
+      class="border-slate-100 h-full md:flex align-middle items-center hidden"
+    >
+      <h2 class="text-center font-semibold md:text-5xl px-3 text-slate-100">
+        Time Now {{ output_string }}
+      </h2>
+      <h3
+        id="time"
+        class="text-center font-semibold md:text-5xl px-3 text-slate-100"
+      ></h3>
+    </div>
+  </div>
+
+  <!-- ./ EndHeader Area -->
+
+  <!-- Alert Area -->
+
+  {% for message in messages %} {% if message.tags == 'warning' %}
+  <div>
+    <audio controls autoplay class="hidden">
+      <source src="{% static 'audio/alarm.mp3' %}" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="alert alert-error shadow-lg mt-5">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="stroke-current flex-shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span> {{ message }} </span>
+      </div>
+    </div>
+  </div>
+  {% endif %} {% endfor %}
+  
+  
+
+  <!-- ./ EndAlert Area -->
+
+  <!-- Form Area -->
+
+  <form action="" method="post" id="myForm">
+    {% csrf_token %}
+
+    <!-- Input Barcode Area -->
+
+    <div class="mt-5">
+      <label for="hs-trailing-button-add-on" class="sr-only">Label</label>
+      <div class="flex rounded-md shadow-sm">
+        <input
+          type="text"
+          id="input-barcode"
+          name="barcode"
+          class="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-l-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 bg-neutral dark:border-gray-700 dark:text-gray-400"
+          required
+          checked
+          autofocus
+        />
+      </div>
+    </div>
+
+    <!-- ./EndInput Barcode Area -->
+
+    <!-- Coming soon -->
+
+    <!-- <div
+      class="flex flex-wrap justify-between justify-items-center gap-1 w-full pt-10 items-center"
+    >
+      {% for scan in scanner %}
+      <div class="flex flex-wrap justify-between">
+        <div class="w-full mx-10 md:mx-0">
+          <input
+            type="radio"
+            name="scanner_id"
+            id="{{ scan.name }}"
+            value="{{ scan.name }}"
+            class="mt-2 justify-between radio"
+          />
+          <label for="{{ scan.name }}">{{ scan.name }}</label>
+        </div>
+      </div>
+      {% endfor %}
+    </div> -->
+
+    <!-- ./Coming soon -->
+
+    <!-- Radio Scanner Area -->
+
+    <div
+      class="flex flex-wrap justify-between justify-items-center gap-4 w-full pt-10 items-center"
+    >
+      <div class="w-[45%] items-center md:mx-0 md:w-1/5">
+        <input
+          type="radio"
+          name="scanner"
+          id="angel"
+          value="angel"
+          class="mt-2 justify-between radio peer/angel hidden"
+          required
+          {% if checked.scanner == 'angel' %}
+            checked
+          {% endif %}
+
+        />
+
+        <label
+          for="angel"
+          class="border border-slate-100 md:h-60 h-40 rounded-xl flex text-center items-center justify-center peer-checked/angel:border-none peer-checked/angel:bg-slate-200 text-slate-100 peer-checked/angel:text-slate-900"
+        >
+          <div
+            class="md:text-6xl text-4xl font-bold justify-items-center items-center text-center"
+          >
+            {{ angel }}
+          </div>
+        </label>
+        <h3
+          class="text-center font-semibold md:text-2xl text-lg text-slate-100 my-3 uppercase"
+        >
+          angel 
+          
+        </h3>
+      </div>
+
+      <div class="w-[45%] md:mx-0 md:w-1/5">
+        <input
+          type="radio"
+          name="scanner"
+          id="latif"
+          value="latif"
+          class="mt-2 justify-between radio peer/latif hidden"
+          required
+          {% if checked.scanner == 'latif' %}
+            checked
+          {% endif %}
+        />
+
+        <label
+          for="latif"
+          class="border border-slate-100 md:h-60 h-40 rounded-xl flex text-center items-center justify-center peer-checked/latif:border-none peer-checked/latif:bg-slate-200 text-slate-100 peer-checked/latif:text-slate-900"
+        >
+          <div
+            class="md:text-6xl text-4xl font-bold justify-items-center items-center text-center"
+          >
+            {{ latif }}
+          </div>
+        </label>
+        <h3
+          class="text-center font-semibold md:text-2xl text-lg text-slate-100 my-3 uppercase"
+        >
+          latif
+        </h3>
+      </div>
+
+      <div class="w-[45%] md:mx-0 md:w-1/5">
+        <input
+          type="radio"
+          name="scanner"
+          id="windi"
+          value="windi"
+          class="peer/windi mt-2 justify-between radio hidden"
+          required
+          {% if checked.scanner == 'windi' %}
+            checked
+          {% endif %}
+        />
+
+        <label
+          for="windi"
+          class="border border-slate-100 md:h-60 h-40 rounded-xl flex text-center items-center justify-center peer-checked/windi:border-none peer-checked/windi:bg-slate-200 text-slate-100 peer-checked/windi:text-slate-900"
+        >
+          <div
+            class="md:text-6xl text-4xl font-bold justify-items-center items-center text-center"
+          >
+            {{ windi }}
+          </div>
+        </label>
+        <h3
+          class="text-center font-semibold md:text-2xl text-lg text-slate-100 my-3 uppercase"
+        >
+          windi
+        </h3>
+      </div>
+
+      <div class="w-[45%] md:mx-0 md:w-1/5">
+        <input
+          type="radio"
+          name="scanner"
+          id="antarestar"
+          value="antarestar"
+          class="peer/antarestar mt-2 justify-between radio hidden"
+          required
+          {% if checked.scanner == 'antarestar' %}
+            checked
+          {% endif %}
+        />
+
+        <label
+          for="antarestar"
+          class="border border-slate-100 md:h-60 h-40 rounded-xl flex text-center items-center justify-center peer-checked/antarestar:border-none peer-checked/antarestar:bg-slate-200 text-slate-100 peer-checked/antarestar:text-slate-900"
+        >
+          <div
+            class="md:text-6xl text-4xl font-bold justify-items-center items-center text-center"
+          >
+            {{ antare }}
+          </div>
+        </label>
+        <h3
+          class="text-center font-semibold md:text-2xl text-lg text-white my-3 uppercase"
+        >
+          antarestar
+        </h3>
+      </div>
+    </div>
+
+    <!-- ./EndRadio Scanner Area -->
+  </form>
+  
+
+  <!-- ./EndForm Area -->
+</div>
+
+<!-- ./EndBody -->
+{%endblock%}

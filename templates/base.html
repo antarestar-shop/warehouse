@@ -1,0 +1,144 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gudang antares</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
+    </style>
+    <style>
+      body {
+        font-family: "Electrolize", sans-serif;
+      }
+      p {
+        color: white;
+      }
+      input {
+        margin-top: 0.25rem;
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid #828282;
+        background-color: #4b5563;
+        color: #111827;
+        border-radius: 0.25rem;
+        height: 2.25rem;
+      }
+
+      input:focus {
+        color: white;
+        border: #4b5563;
+        background-color: transparent;
+      }
+      input:active {
+        background-color: transparent;
+      }
+
+      @media (min-width: 640px) {
+        input {
+          font-size: 0.75rem;
+        }
+      }
+      label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #d1d5db;
+      }
+
+      @media (min-width: 640px) {
+        select {
+          font-size: 0.875rem;
+        }
+      }
+      #id_username {
+        background-color: #1f2937;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      #id_password {
+        background-color: #1f2937;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      @media (max-width: 767px) {
+        footer {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="" onload="startTime()">
+    {%block content%} {%endblock%}
+
+    <footer class="bg-gray-800 text-white p-4">
+      <div class="container mx-auto">
+        <div class="flex">
+          <div class="w-1/3 text-center">
+            <h5 class="font-bold">Contact Us</h5>
+            <p><a href="https://www.instagram.com/sun_flower281004/">Pram</a> | <a href="https://www.instagram.com/be_fazza/">Fazza</a> | <a href="https://www.instagram.com/aidil.nv/">Udil</a></p>
+          </div>
+          <div class="w-1/3 text-center">
+            <h5 class="font-bold">Copyright</h5>
+            <p>Copyright © 2023 Antarestar. All rights reserved.</p>
+          </div>
+          <div class="w-1/3 text-center">
+            <h5 class="font-bold">Version</h5>
+            <p>Version 1.0.0</p>
+          </div>
+        </div>
+      </div>
+    </footer>    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+      // mengambil elemen form dan input
+      var input = document.getElementById('input-barcode');
+
+      function startTime() {
+        const today = new Date();
+        let d = today.getDay();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById("time").innerHTML = h + ":" + m + ":" + s;
+        setTimeout(startTime, 1000);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+
+      
+
+      // menambahkan event change pada input
+      input.addEventListener('change', function() {
+        // mengirimkan form saat event change terjadi
+        form.submit();
+
+      })
+
+      
+    </script>
+  </body>
+</html>

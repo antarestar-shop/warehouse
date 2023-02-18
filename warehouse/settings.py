@@ -27,7 +27,9 @@ SECRET_KEY = '-r&*!%+qu%7%fk=9_e-fff89-*hex_e7iw*bio5o)fch=+=w-j'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://sortir-ant.up.railway.app'
+]
 
 # Application definition
 

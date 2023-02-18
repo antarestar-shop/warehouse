@@ -6,21 +6,32 @@
   <!-- Header Area -->
   <form action="{% url 'sortir' %}" method="post">
     {% csrf_token %}
-    <input type="text" name="reset" value="reset" class="hidden">
+    <input type="text" name="reset" value="reset" class="hidden" />
     <center>
-      <button class="border border-error md:p-1 md:px-2 p-3 rounded-md hover:bg-error text-slate-100 float-left" type="submit" value="reset">reset</button>
-      <a href="/admin" class="border border-violet-500 md:p-1 md:px-2 p-3 rounded-md hover:bg-violet-500 text-slate-100">admin</a>
-      <a href="{% url 'logout' %}" class="border border-info md:p-1 md:px-2 p-3 rounded-md hover:bg-info text-slate-100 float-right">Logout</a>
+      <button
+        class="border border-error md:p-1 md:px-2 p-3 rounded-md hover:bg-error text-slate-100 float-left"
+        type="submit"
+        value="reset"
+      >
+        reset
+      </button>
+      <a
+        href="/admin"
+        class="border border-violet-500 md:p-1 md:px-2 p-3 rounded-md hover:bg-violet-500 text-slate-100"
+        >admin</a
+      >
+      <a
+        href="{% url 'logout' %}"
+        class="border border-info md:p-1 md:px-2 p-3 rounded-md hover:bg-info text-slate-100 float-right"
+        >Logout</a
+      >
     </center>
-  
   </form>
   <div class="w-full rounded-2xl bg-neutral md:h-56 h-24 flex">
-    {%load static%}
     <img
-      src="{% static 'img/logo.png' %}"
-      class="overflow-hidden"
-      height="100% "
-      alt="Antarestar"
+      src="https://i.ibb.co/0jfPxcR/logo.png"
+      alt="logo"
+      class="overflow-hidden h-full"
     />
 
     <div class="flex items-center align-middle px-3">
@@ -30,7 +41,7 @@
         <h3
           class="md:text-5xl text-xl font-bold text-slate-100 align-middle text-left"
         >
-         Sukses: {{ total }}
+          Sukses: {{ total }}
         </h3>
       </div>
     </div>
@@ -87,8 +98,6 @@
     </div>
   </div>
   {% endif %} {% endfor %}
-  
-  
 
   <!-- ./ EndAlert Area -->
 
@@ -145,18 +154,9 @@
       class="flex flex-wrap justify-between justify-items-center gap-4 w-full pt-10 items-center"
     >
       <div class="w-[45%] items-center md:mx-0 md:w-1/5">
-        <input
-          type="radio"
-          name="scanner"
-          id="angel"
-          value="angel"
-          class="mt-2 justify-between radio peer/angel hidden"
-          required
-          {% if checked.scanner == 'angel' %}
-            checked
-          {% endif %}
-
-        />
+        <input type="radio" name="scanner" id="angel" value="angel" class="mt-2
+        justify-between radio peer/angel hidden" required {% if checked.scanner
+        == 'angel' %} checked {% endif %} />
 
         <label
           for="angel"
@@ -171,23 +171,14 @@
         <h3
           class="text-center font-semibold md:text-2xl text-lg text-slate-100 my-3 uppercase"
         >
-          angel 
-          
+          angel
         </h3>
       </div>
 
       <div class="w-[45%] md:mx-0 md:w-1/5">
-        <input
-          type="radio"
-          name="scanner"
-          id="latif"
-          value="latif"
-          class="mt-2 justify-between radio peer/latif hidden"
-          required
-          {% if checked.scanner == 'latif' %}
-            checked
-          {% endif %}
-        />
+        <input type="radio" name="scanner" id="latif" value="latif" class="mt-2
+        justify-between radio peer/latif hidden" required {% if checked.scanner
+        == 'latif' %} checked {% endif %} />
 
         <label
           for="latif"
@@ -207,17 +198,9 @@
       </div>
 
       <div class="w-[45%] md:mx-0 md:w-1/5">
-        <input
-          type="radio"
-          name="scanner"
-          id="windi"
-          value="windi"
-          class="peer/windi mt-2 justify-between radio hidden"
-          required
-          {% if checked.scanner == 'windi' %}
-            checked
-          {% endif %}
-        />
+        <input type="radio" name="scanner" id="windi" value="windi"
+        class="peer/windi mt-2 justify-between radio hidden" required {% if
+        checked.scanner == 'windi' %} checked {% endif %} />
 
         <label
           for="windi"
@@ -237,17 +220,9 @@
       </div>
 
       <div class="w-[45%] md:mx-0 md:w-1/5">
-        <input
-          type="radio"
-          name="scanner"
-          id="antarestar"
-          value="antarestar"
-          class="peer/antarestar mt-2 justify-between radio hidden"
-          required
-          {% if checked.scanner == 'antarestar' %}
-            checked
-          {% endif %}
-        />
+        <input type="radio" name="scanner" id="antarestar" value="antarestar"
+        class="peer/antarestar mt-2 justify-between radio hidden" required {% if
+        checked.scanner == 'antarestar' %} checked {% endif %} />
 
         <label
           for="antarestar"
@@ -269,7 +244,6 @@
 
     <!-- ./EndRadio Scanner Area -->
   </form>
-  
 
   <!-- ./EndForm Area -->
 </div>
